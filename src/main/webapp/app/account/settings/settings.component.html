@@ -1,0 +1,117 @@
+<div>
+  <div class="d-flex justify-content-center">
+    <div class="col-md-8">
+      @if (settingsForm.value.login) {
+        <h2>
+          Настройки пользователя для [<strong>{{ settingsForm.value.login }}</strong
+          >]
+        </h2>
+      }
+
+      @if (success) {
+        <div class="alert alert-success"><strong>Настройки сохранены!</strong></div>
+      }
+
+      <jhi-alert-error></jhi-alert-error>
+
+      @if (settingsForm.value.login) {
+        <form name="form" role="form" (ngSubmit)="save()" [formGroup]="settingsForm" novalidate>
+          <div class="mb-3">
+            <label class="form-label" for="firstName">Имя</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              name="firstName"
+              placeholder="Ваше имя"
+              formControlName="firstName"
+              data-cy="firstname"
+            />
+
+            @if (
+              settingsForm.get('firstName')!.invalid && (settingsForm.get('firstName')!.dirty || settingsForm.get('firstName')!.touched)
+            ) {
+              <div>
+                @if (settingsForm.get('firstName')?.errors?.required) {
+                  <small class="form-text text-danger">Имя должно быть указано.</small>
+                }
+
+                @if (settingsForm.get('firstName')?.errors?.minlength) {
+                  <small class="form-text text-danger">Длина имени должна быть хотя-бы 1 символ</small>
+                }
+
+                @if (settingsForm.get('firstName')?.errors?.maxlength) {
+                  <small class="form-text text-danger">Имя не может быть длиннее чем 50 символов</small>
+                }
+              </div>
+            }
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="lastName">Фамилия</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              name="lastName"
+              placeholder="Ваша фамилия"
+              formControlName="lastName"
+              data-cy="lastname"
+            />
+
+            @if (settingsForm.get('lastName')!.invalid && (settingsForm.get('lastName')!.dirty || settingsForm.get('lastName')!.touched)) {
+              <div>
+                @if (settingsForm.get('lastName')?.errors?.required) {
+                  <small class="form-text text-danger">Фамилия должна быть указана.</small>
+                }
+
+                @if (settingsForm.get('lastName')?.errors?.minlength) {
+                  <small class="form-text text-danger">Длина фамилии должна быть хотя-бы 1 символ</small>
+                }
+
+                @if (settingsForm.get('lastName')?.errors?.maxlength) {
+                  <small class="form-text text-danger">Фамилия не может быть длиннее чем 50 символов</small>
+                }
+              </div>
+            }
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="email">Эл. почта</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Ваша эл. почта"
+              formControlName="email"
+              data-cy="email"
+            />
+
+            @if (settingsForm.get('email')!.invalid && (settingsForm.get('email')!.dirty || settingsForm.get('email')!.touched)) {
+              <div>
+                @if (settingsForm.get('email')?.errors?.required) {
+                  <small class="form-text text-danger">Email должен быть указан.</small>
+                }
+
+                @if (settingsForm.get('email')?.errors?.email) {
+                  <small class="form-text text-danger">Email не верен.</small>
+                }
+
+                @if (settingsForm.get('email')?.errors?.minlength) {
+                  <small class="form-text text-danger">Длина email должна быть хотя-бы 5 символов</small>
+                }
+
+                @if (settingsForm.get('email')?.errors?.maxlength) {
+                  <small class="form-text text-danger">Email не может быть длиннее чем 50 символов</small>
+                }
+              </div>
+            }
+          </div>
+
+          <button type="submit" [disabled]="settingsForm.invalid" class="btn btn-primary" data-cy="submit">Сохранить</button>
+        </form>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+{
+  "generator-jhipster": {
+    "additionalSubGenerators": "",
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "testBluep",
+    "buildTool": "maven",
+    "cacheProvider": "no",
+    "cli": null,
+    "clientFramework": "angular",
+    "clientTestFrameworks": [],
+    "clientTheme": "none",
+    "creationTimestamp": 1707756277358,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "devServerPort": 4200,
+    "enableGradleEnterprise": null,
+    "enableHibernateCache": false,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": false,
+    "entities": ["Task"],
+    "feignClient": false,
+    "generators": {
+      "angular": {
+        "command": null,
+        "priorities": ["writing", "writingEntities"],
+        "sbs": true,
+        "written": true
+      },
+      "client": {
+        "command": null,
+        "priorities": ["writing", "writingEntities"],
+        "sbs": true,
+        "written": true
+      },
+      "entity": {
+        "command": null,
+        "priorities": [
+          "initializing",
+          "prompting",
+          "configuring",
+          "composing",
+          "loading",
+          "preparing",
+          "postPreparing",
+          "default",
+          "writing",
+          "multistepTransform",
+          "postWriting",
+          "transform",
+          "install",
+          "postInstall",
+          "end"
+        ],
+        "sbs": true,
+        "written": true
+      }
+    },
+    "gradleEnterpriseHost": null,
+    "jhipsterVersion": "8.1.0",
+    "jwtSecretKey": "ZTJjMWQzZjgzMGY1NzFmYWFmMzVlM2QzMDY3YTBlNjU1NDQ3ZWQ4ZjY1MDg1YmY0NDQ2N2Q1YTRjNWFkODliOWQyOGUwMGFlZDUzOWZjYzk3YWJmYjFmY2I1ZWFlMDcwZTAwYjM3NDg3Y2RkZjJiN2EyNzEzZWJhYTUzZjE1OGQ=",
+    "lastLiquibaseTimestamp": 1707756337000,
+    "localBlueprint": true,
+    "messageBroker": false,
+    "microfrontend": null,
+    "microfrontends": [],
+    "nativeLanguage": "ru",
+    "packageName": "com.mycompany.myapp",
+    "prodDatabaseType": "postgresql",
+    "reactive": false,
+    "sampleWritten": true,
+    "searchEngine": false,
+    "serverPort": null,
+    "serverSideOptions": [],
+    "serviceDiscoveryType": false,
+    "subGenerators": ["entity"],
+    "testFrameworks": [],
+    "websocket": false,
+    "withAdminUi": false
+  }
+}
