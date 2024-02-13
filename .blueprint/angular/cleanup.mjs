@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { CLIENT_WEBPACK_DIR } from '../generator-constants.mjs';
+export const CLIENT_WEBPACK_DIR = 'webpack/';
 /**
  * Removes files that where generated in previous JHipster versions and therefore
  * need to be removed.
