@@ -167,6 +167,30 @@ _%>
 <%_ } _%>
                     <td class="text-end">
                         <div class="btn-group">
+                                                    <button type="submit"
+                                                            [routerLink]="['/<%= entityPage %>', <%= entityInstance %>.<%= primaryKey.name %>, 'view']"
+                                                            class="btn btn-info btn-sm"
+                                                            data-cy="entityDetailsButton">
+                                                        <fa-icon icon="eye"></fa-icon>
+                                                        <span class="d-none d-md-inline" <%= jhiPrefix %>Translate="entity.action.view"><%- getWebappTranslation('entity.action.view') %></span>
+                                                    </button>
+                        <%_ if (!readOnly) { _%>
+
+                                                    <button type="submit"
+                                                            [routerLink]="['/<%= entityPage %>', <%= entityInstance %>.<%= primaryKey.name %>, 'edit']"
+                                                            class="btn btn-primary btn-sm"
+                                                            data-cy="entityEditButton">
+                                                        <fa-icon icon="pencil-alt"></fa-icon>
+                                                        <span class="d-none d-md-inline" <%= jhiPrefix %>Translate="entity.action.edit"><%- getWebappTranslation('entity.action.edit') %></span>
+                                                    </button>
+
+                                                    <button type="submit" (click)="delete(<%= entityInstance %>)"
+                                                            class="btn btn-danger btn-sm"
+                                                            data-cy="entityDeleteButton">
+                                                        <fa-icon icon="times"></fa-icon>
+                                                        <span class="d-none d-md-inline" <%= jhiPrefix %>Translate="entity.action.delete"><%- getWebappTranslation('entity.action.delete') %></span>
+                                                    </button>
+                        <%_ } _%>
 <%_ for (const relationship of relationships.filter(rel => !rel.otherEntityIsEmbedded)) { _%>
     <%_ if (relationship.otherEntity.jpaMetamodelFiltering && relationship.otherEntity.paginationPagination && (relationship.relationshipOneToMany || relationship.relationshipManyToMany) && !relationship.ownerSide) {
         const otherEntityTranslationKey = i18nKeyPrefix + '.' + relationship.relationshipName;
@@ -181,30 +205,7 @@ _%>
                             </button>
     <%_ } _%>
 <%_ } _%>
-                            <button type="submit"
-                                    [routerLink]="['/<%= entityPage %>', <%= entityInstance %>.<%= primaryKey.name %>, 'view']"
-                                    class="btn btn-info btn-sm"
-                                    data-cy="entityDetailsButton">
-                                <fa-icon icon="eye"></fa-icon>
-                                <span class="d-none d-md-inline" <%= jhiPrefix %>Translate="entity.action.view"><%- getWebappTranslation('entity.action.view') %></span>
-                            </button>
-<%_ if (!readOnly) { _%>
 
-                            <button type="submit"
-                                    [routerLink]="['/<%= entityPage %>', <%= entityInstance %>.<%= primaryKey.name %>, 'edit']"
-                                    class="btn btn-primary btn-sm"
-                                    data-cy="entityEditButton">
-                                <fa-icon icon="pencil-alt"></fa-icon>
-                                <span class="d-none d-md-inline" <%= jhiPrefix %>Translate="entity.action.edit"><%- getWebappTranslation('entity.action.edit') %></span>
-                            </button>
-
-                            <button type="submit" (click)="delete(<%= entityInstance %>)"
-                                    class="btn btn-danger btn-sm"
-                                    data-cy="entityDeleteButton">
-                                <fa-icon icon="times"></fa-icon>
-                                <span class="d-none d-md-inline" <%= jhiPrefix %>Translate="entity.action.delete"><%- getWebappTranslation('entity.action.delete') %></span>
-                            </button>
-<%_ } _%>
                         </div>
                     </td>
                 </tr>
