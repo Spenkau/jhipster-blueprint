@@ -44,6 +44,14 @@ const <%= entityInstance %>Route: Routes = [
     },
     canActivate: [UserRouteAccessService]
   },
+  {
+      path: ':<%= primaryKey.name %>/copy',
+      component: <%= entityAngularName %>DetailComponent,
+      resolve: {
+        <%= entityInstance %>: <%= entityAngularName %>Resolve
+      },
+      canActivate: [UserRouteAccessService]
+    },
 <%_ if (!readOnly) { _%>
   {
     path: 'new',
