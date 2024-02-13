@@ -2,7 +2,9 @@
   <div class="col-8">
     @if (task) {
       <div>
-        <h2 data-cy="taskDetailsHeading"><span>Task</span></h2>
+        <h2 data-cy="taskDetailsHeading">
+          <span jhiTranslate="testBluepApp.task.detail.title">__jhiTransformTranslate__('testBluepApp.task.detail.title')</span>
+        </h2>
 
         <hr />
 
@@ -11,22 +13,26 @@
         <jhi-alert></jhi-alert>
 
         <dl class="row-md jh-entity-details">
-          <dt><span>ID</span></dt>
+          <dt><span jhiTranslate="global.field.id">__jhiTransformTranslate__('global.field.id')</span></dt>
           <dd>
             <span>{{ task.id }}</span>
           </dd>
-          <dt><span>Name</span></dt>
+          <dt><span jhiTranslate="testBluepApp.task.name">__jhiTransformTranslate__('testBluepApp.task.name')</span></dt>
           <dd>
             <span>{{ task.name }}</span>
           </dd>
         </dl>
 
         <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Назад</span>
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"
+            >__jhiTransformTranslate__('entity.action.back')</span
+          >
         </button>
 
         <button type="button" [routerLink]="['/task', task.id, 'edit']" class="btn btn-primary">
-          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Изменить</span>
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"
+            >__jhiTransformTranslate__('entity.action.edit')</span
+          >
         </button>
       </div>
     }
