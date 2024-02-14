@@ -49,6 +49,12 @@ export class TaskComponent implements OnInit {
     this.load();
   }
 
+  copy(task: ITask): void {
+    this.taskService.copy(task).subscribe(res => {
+      console.log(res);
+    });
+  }
+
   delete(task: ITask): void {
     const modalRef = this.modalService.open(TaskDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.task = task;

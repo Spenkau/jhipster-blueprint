@@ -4,6 +4,7 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access.service'
 import { ASC } from 'app/config/navigation.constants';
 import { TaskComponent } from './list/task.component';
 import { TaskDetailComponent } from './detail/task-detail.component';
+import { TaskCopyComponent } from './copy/task-copy.component';
 import { TaskUpdateComponent } from './update/task-update.component';
 import TaskResolve from './route/task-routing-resolve.service';
 
@@ -19,6 +20,14 @@ const taskRoute: Routes = [
   {
     path: ':id/view',
     component: TaskDetailComponent,
+    resolve: {
+      task: TaskResolve,
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: ':id/copy',
+    component: TaskCopyComponent,
     resolve: {
       task: TaskResolve,
     },

@@ -21,6 +21,10 @@ export class TaskService {
     protected applicationConfigService: ApplicationConfigService,
   ) {}
 
+  copy(task: ITask): Observable<EntityResponseType> {
+    return this.http.post<ITask>(`${this.resourceUrl}/copy`, task, { observe: 'response' });
+  }
+
   create(task: NewTask): Observable<EntityResponseType> {
     return this.http.post<ITask>(this.resourceUrl, task, { observe: 'response' });
   }

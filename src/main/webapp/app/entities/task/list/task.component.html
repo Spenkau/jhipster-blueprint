@@ -59,6 +59,13 @@
             <tr data-cy="entityTable">
               <td class="text-end">
                 <div class="btn-group">
+                  <a [routerLink]="['/task', task.id, 'copy']" class="btn btn-primary btn-sm" data-cy="entityCopyButton">
+                    <span class="d-none d-md-inline">COPY_1</span>
+                  </a>
+
+                  <button type="submit" (click)="copy(task)" class="btn btn-primary btn-sm" data-cy="entityCopyButton">
+                    <span class="d-none d-md-inline">COPY_2</span>
+                  </button>
                   <a [routerLink]="['/task', task.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                     <fa-icon icon="eye"></fa-icon>
                     <span class="d-none d-md-inline" jhiTranslate="entity.action.view"
@@ -81,12 +88,20 @@
                   </button>
                 </div>
               </td>
+
               <td>
                 <a [routerLink]="['/task', task.id, 'view']">{{ task.id }}</a>
               </td>
 
               <td class="text-end">
                 <div class="btn-group">
+                  <a [routerLink]="['/task', task.id, 'copy']" class="btn btn-primary btn-sm" data-cy="entityCopyButton">
+                    <span class="d-none d-md-inline">COPY_1</span>
+                  </a>
+
+                  <button type="submit" (click)="copy(task)" class="btn btn-primary btn-sm" data-cy="entityCopyButton">
+                    <span class="d-none d-md-inline">COPY_2</span>
+                  </button>
                   <a [routerLink]="['/task', task.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                     <fa-icon icon="eye"></fa-icon>
                     <span class="d-none d-md-inline" jhiTranslate="entity.action.view"
@@ -109,6 +124,7 @@
                   </button>
                 </div>
               </td>
+
               <td>{{ task.name }}</td>
             </tr>
           }
