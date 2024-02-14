@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (task) {
+      <div>
+        <h2 data-cy="taskCopyHeading">
+          <span jhiTranslate="testBluepApp.task.copy.title">__jhiTransformTranslate__('testBluepApp.task.copy.title')</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-copy">
+          <dt><span jhiTranslate="global.field.id">__jhiTransformTranslate__('global.field.id')</span></dt>
+          <dd>
+            <span>{{ task.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="testBluepApp.task.name">__jhiTransformTranslate__('testBluepApp.task.name')</span></dt>
+          <dd>
+            <span>{{ task.name }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"
+            >__jhiTransformTranslate__('entity.action.back')</span
+          >
+        </button>
+      </div>
+    }
+  </div>
+</div>
