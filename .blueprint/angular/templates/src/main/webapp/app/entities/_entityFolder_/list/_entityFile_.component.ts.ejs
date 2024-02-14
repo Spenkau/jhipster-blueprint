@@ -211,6 +211,13 @@ export class <%= componentName %> implements OnInit {
 
 <%_ } _%>
 <%_ if (!readOnly) { _%>
+
+    copy(<%= entityInstance %>: I<%= entityAngularName %>): void {
+        this.<%= entityInstance %>Service.copy(<%= entityInstance %>).subscribe((res) => {
+            console.log(res);
+        })
+    }
+
     delete(<%= entityInstance %>: I<%= entityAngularName %>): void {
       const modalRef = this.modalService.open(<%= entityAngularName %>DeleteDialogComponent, { size: 'lg', backdrop: 'static' });
       modalRef.componentInstance.<%= entityInstance %> = <%= entityInstance %>;

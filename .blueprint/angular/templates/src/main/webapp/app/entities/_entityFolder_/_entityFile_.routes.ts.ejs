@@ -21,6 +21,7 @@ import { Routes } from '@angular/router';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
 import { <%= entityAngularName %>Component } from './list/<%= entityFileName %>.component';
 import { <%= entityAngularName %>DetailComponent } from './detail/<%= entityFileName %>-detail.component';
+import { <%= entityAngularName %>CopyComponent } from './copy/<%= entityFileName %>-copy.component';
 <%_ if (!readOnly) { _%>
 import { <%= entityAngularName %>UpdateComponent } from './update/<%= entityFileName %>-update.component';
 <%_ } _%>
@@ -46,7 +47,7 @@ const <%= entityInstance %>Route: Routes = [
   },
   {
       path: ':<%= primaryKey.name %>/copy',
-      component: <%= entityAngularName %>DetailComponent,
+      component: <%= entityAngularName %>CopyComponent,
       resolve: {
         <%= entityInstance %>: <%= entityAngularName %>Resolve
       },

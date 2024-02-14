@@ -114,22 +114,20 @@ _%>
 
                 <td class="text-end">
                     <div class="btn-group">
+                        <a [routerLink]="['/<%= entityPage %>', <%= entityInstance %>.<%= primaryKey.name %>, 'copy']"
+                           class="btn btn-primary btn-sm" data-cy="entityCopyButton">
+                            <span class="d-none d-md-inline">COPY_1</span>
+                        </a>
+
+                        <button type="submit" (click)="copy(<%= entityInstance %>)"
+                                class="btn btn-primary btn-sm"
+                                data-cy="entityCopyButton">
+                            <span class="d-none d-md-inline">COPY_2</span>
+                        </button>
     <%_ for (const relationship of relationships.filter(rel => !rel.otherEntityIsEmbedded)) { _%>
         <%_ if (relationship.otherEntity.jpaMetamodelFiltering && relationship.otherEntity.paginationPagination && relationship.collection && !relationship.persistableRelationship) {
             const otherEntityTranslationKey = i18nKeyPrefix + '.' + relationship.relationshipName;
         _%>
-
-                            <a [routerLink]="['/<%= entityPage %>', <%= entityInstance %>.<%= primaryKey.name %>, 'copy']"
-                               class="btn btn-primary btn-sm" data-cy="entityCopyButton">
-                                <fa-icon icon="eye"></fa-icon>
-                                <span class="d-none d-md-inline">COPY_1</span>
-                            </a>
-
-                            <button type="submit" (click)="copy(<%= entityInstance %>)"
-                                    class="btn btn-primary btn-sm"
-                                    data-cy="entityCopyButton">
-                                <span class="d-none d-md-inline">COPY_2</span>
-                            </button>
 
                             <button type="submit"
                                     [routerLink]="['/<%= relationship.otherEntity.entityPage %>']"

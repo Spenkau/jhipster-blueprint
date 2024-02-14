@@ -28,11 +28,11 @@ import { DataUtils } from 'app/core/util/data-util.service';
 
 @Component({
     standalone: true,
-    selector: '<%= jhiPrefixDashed %>-<%= entityFileName %>-detail',
-    templateUrl: './<%= entityFileName %>-detail.component.html',
+    selector: '<%= jhiPrefixDashed %>-<%= entityFileName %>-copy',
+    templateUrl: './<%= entityFileName %>-copy.component.html',
     imports: [SharedModule, RouterModule, DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe],
 })
-export class <%= entityAngularName %>DetailComponent {
+export class <%= entityAngularName %>CopyComponent {
     @Input() <%= entityInstance %>: I<%= entityAngularName %> | null = null;
 
     constructor(

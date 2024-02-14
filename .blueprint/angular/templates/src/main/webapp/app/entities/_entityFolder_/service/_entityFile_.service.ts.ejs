@@ -83,6 +83,16 @@ export class <%= entityAngularName %>Service {
     constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
 <%_ if (!readOnly) { _%>
+    copy(<%= entityInstance %>: I<%= entityAngularName %>): Observable<EntityResponseType> {
+    <%_ if (anyFieldIsDateDerived) { _%>
+        const copy = this.convertDateFromClient(<%= entityInstance %>);
+    <%_ } _%>
+        return this.http.post<<%= entityRestName %>>(`${this.resourceUrl}/copy`,
+                <% if (anyFieldIsDateDerived) { %> copy <% } else { %> <%= entityInstance %> <% } %>,
+                { observe: 'response' })
+        <% if (anyFieldIsDateDerived) { %>.pipe(map(res => this.convertResponseFromServer(res)))<% } %>;
+    }
+
     create(<%= entityInstance %>: New<%= entityAngularName %>): Observable<EntityResponseType> {
     <%_ if (anyFieldIsDateDerived) { _%>
         const copy = this.convertDateFromClient(<%= entityInstance %>);
