@@ -8,6 +8,8 @@ export const angularFiles = {
         'entities/_entityFolder_/_entityFile_.routes.ts',
         'entities/_entityFolder_/detail/_entityFile_-detail.component.html',
         'entities/_entityFolder_/detail/_entityFile_-detail.component.ts',
+        'entities/_entityFolder_/copy/_entityFile_-copy.component.html',
+        'entities/_entityFolder_/copy/_entityFile_-copy.component.ts',
         'entities/_entityFolder_/list/_entityFile_.component.html',
         'entities/_entityFolder_/list/_entityFile_.component.ts',
         'entities/_entityFolder_/service/_entityFile_.service.ts',
