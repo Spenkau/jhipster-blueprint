@@ -2,6 +2,7 @@ package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.Task;
 import com.mycompany.myapp.repository.TaskRepository;
+import com.mycompany.myapp.service.TaskService;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -22,7 +22,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api/tasks")
-@Transactional
 public class TaskResource {
 
     private final Logger log = LoggerFactory.getLogger(TaskResource.class);
@@ -32,9 +31,12 @@ public class TaskResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final TaskService taskService;
+
     private final TaskRepository taskRepository;
 
-    public TaskResource(TaskRepository taskRepository) {
+    public TaskResource(TaskService taskService, TaskRepository taskRepository) {
+        this.taskService = taskService;
         this.taskRepository = taskRepository;
     }
 
@@ -51,7 +53,7 @@ public class TaskResource {
         if (task.getId() != null) {
             throw new BadRequestAlertException("A new task cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Task result = taskRepository.save(task);
+        Task result = taskService.save(task);
         return ResponseEntity
             .created(new URI("/api/tasks/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
@@ -83,7 +85,7 @@ public class TaskResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Task result = taskRepository.save(task);
+        Task result = taskService.update(task);
         return ResponseEntity
             .ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, task.getId().toString()))
@@ -116,16 +118,7 @@ public class TaskResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<Task> result = taskRepository
-            .findById(task.getId())
-            .map(existingTask -> {
-                if (task.getName() != null) {
-                    existingTask.setName(task.getName());
-                }
-
-                return existingTask;
-            })
-            .map(taskRepository::save);
+        Optional<Task> result = taskService.partialUpdate(task);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -141,7 +134,7 @@ public class TaskResource {
     @GetMapping("")
     public List<Task> getAllTasks() {
         log.debug("REST request to get all Tasks");
-        return taskRepository.findAll();
+        return taskService.findAll();
     }
 
     /**
@@ -153,7 +146,7 @@ public class TaskResource {
     @GetMapping("/{id}")
     public ResponseEntity<Task> getTask(@PathVariable("id") Long id) {
         log.debug("REST request to get Task : {}", id);
-        Optional<Task> task = taskRepository.findById(id);
+        Optional<Task> task = taskService.findOne(id);
         return ResponseUtil.wrapOrNotFound(task);
     }
 
@@ -166,7 +159,7 @@ public class TaskResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable("id") Long id) {
         log.debug("REST request to delete Task : {}", id);
-        taskRepository.deleteById(id);
+        taskService.delete(id);
         return ResponseEntity
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))

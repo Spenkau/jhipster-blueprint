@@ -12,5 +12,6 @@
   ],
   "name": "Task",
   "relationships": [],
-  "searchEngine": "no"
+  "searchEngine": "no",
+  "service": "serviceClass"
 }
