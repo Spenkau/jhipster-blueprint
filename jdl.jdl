@@ -1,3 +1,5 @@
 entity Task {
     name String
 }
+
+service * with serviceClass
