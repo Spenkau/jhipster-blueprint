@@ -214,7 +214,7 @@ export class <%= componentName %> implements OnInit {
 
     copy(<%= entityInstance %>: I<%= entityAngularName %>): void {
         this.<%= entityInstance %>Service.copy(<%= entityInstance %>).subscribe((res) => {
-            console.log(res);
+            console.log("using getName() return next result: ", res);
         })
     }
 

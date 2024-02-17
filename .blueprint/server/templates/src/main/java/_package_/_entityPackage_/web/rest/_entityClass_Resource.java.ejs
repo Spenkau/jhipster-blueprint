@@ -407,7 +407,7 @@ public class <%= entityClass %>Resource {
     @PostMapping("/copy")
     public String copy(@RequestBody <%= instanceType %> <%= instanceName %>) {
         log.debug("REST request to get name of copy of <%= instanceName %>");
-        return <%= instanceName %>Service.copy(<%= instanceName %>);
+        return "{ \"response\": " + "\"" + <%= instanceName %>Service.copy(<%= instanceName %>) + "\"}";
     }
 
     /**
