@@ -1,4 +1,4 @@
-import { clientApplicationTemplatesBlock } from '../client/support/files.mjs';
+import { clientApplicationTemplatesBlock } from 'generator-jhipster/generators/client/support';
 export const angularFiles = {
   client: [
     {

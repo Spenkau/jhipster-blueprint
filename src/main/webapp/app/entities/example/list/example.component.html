@@ -1,0 +1,176 @@
+<div>
+  <h2 id="page-heading" data-cy="ExampleHeading">
+    <span jhiTranslate="testBluepApp.example.home.title">__jhiTransformTranslate__('testBluepApp.example.home.title')</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="testBluepApp.example.home.refreshListLabel"
+          >__jhiTransformTranslate__('testBluepApp.example.home.refreshListLabel')</span
+        >
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-example"
+        [routerLink]="['/example/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="testBluepApp.example.home.createLabel">__jhiTransformTranslate__('testBluepApp.example.home.createLabel')</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (examples?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="testBluepApp.example.home.notFound">__jhiTransformTranslate__('testBluepApp.example.home.notFound')</span>
+    </div>
+  }
+
+  @if (examples && examples.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">__jhiTransformTranslate__('global.field.id')</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="name">
+              <div class="d-flex">
+                <span jhiTranslate="testBluepApp.example.name">__jhiTransformTranslate__('testBluepApp.example.name')</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="slug">
+              <div class="d-flex">
+                <span jhiTranslate="testBluepApp.example.slug">__jhiTransformTranslate__('testBluepApp.example.slug')</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (example of examples; track trackId) {
+            <tr data-cy="entityTable">
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/example', example.id, 'copy']" class="btn btn-primary btn-sm" data-cy="entityCopyButton">
+                    <span class="d-none d-md-inline">COPY_1</span>
+                  </a>
+
+                  <button type="submit" (click)="copy(example)" class="btn btn-primary btn-sm" data-cy="entityCopyButton">
+                    <span class="d-none d-md-inline">COPY_2</span>
+                  </button>
+                  <a [routerLink]="['/example', example.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view"
+                      >__jhiTransformTranslate__('entity.action.view')</span
+                    >
+                  </a>
+
+                  <a [routerLink]="['/example', example.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit"
+                      >__jhiTransformTranslate__('entity.action.edit')</span
+                    >
+                  </a>
+
+                  <button type="submit" (click)="delete(example)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete"
+                      >__jhiTransformTranslate__('entity.action.delete')</span
+                    >
+                  </button>
+                </div>
+              </td>
+
+              <td>
+                <a [routerLink]="['/example', example.id, 'view']">{{ example.id }}</a>
+              </td>
+
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/example', example.id, 'copy']" class="btn btn-primary btn-sm" data-cy="entityCopyButton">
+                    <span class="d-none d-md-inline">COPY_1</span>
+                  </a>
+
+                  <button type="submit" (click)="copy(example)" class="btn btn-primary btn-sm" data-cy="entityCopyButton">
+                    <span class="d-none d-md-inline">COPY_2</span>
+                  </button>
+                  <a [routerLink]="['/example', example.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view"
+                      >__jhiTransformTranslate__('entity.action.view')</span
+                    >
+                  </a>
+
+                  <a [routerLink]="['/example', example.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit"
+                      >__jhiTransformTranslate__('entity.action.edit')</span
+                    >
+                  </a>
+
+                  <button type="submit" (click)="delete(example)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete"
+                      >__jhiTransformTranslate__('entity.action.delete')</span
+                    >
+                  </button>
+                </div>
+              </td>
+
+              <td>{{ example.name }}</td>
+
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/example', example.id, 'copy']" class="btn btn-primary btn-sm" data-cy="entityCopyButton">
+                    <span class="d-none d-md-inline">COPY_1</span>
+                  </a>
+
+                  <button type="submit" (click)="copy(example)" class="btn btn-primary btn-sm" data-cy="entityCopyButton">
+                    <span class="d-none d-md-inline">COPY_2</span>
+                  </button>
+                  <a [routerLink]="['/example', example.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view"
+                      >__jhiTransformTranslate__('entity.action.view')</span
+                    >
+                  </a>
+
+                  <a [routerLink]="['/example', example.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit"
+                      >__jhiTransformTranslate__('entity.action.edit')</span
+                    >
+                  </a>
+
+                  <button type="submit" (click)="delete(example)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete"
+                      >__jhiTransformTranslate__('entity.action.delete')</span
+                    >
+                  </button>
+                </div>
+              </td>
+
+              <td>{{ example.slug }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

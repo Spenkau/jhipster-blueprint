@@ -16,5 +16,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-export * from '../../java/support/files.mjs';
-export { getPrimaryKeyValue, getJavaValueGeneratorForType } from 'generator-jhipster/generators/server/support';
+export * from 'generator-jhipster/generators/java/support';
+export {
+  buildJavaSetter,
+  buildJavaGetter,
+  javaBeanCase,
+  getDBTypeFromDBValue,
+  buildJavaGet,
+  getPrimaryKeyValue,
+  getJavaValueGeneratorForType,
+  generateKeyStore,
+  addSpringFactory,
+  hibernateSnakeCase,
+} from 'generator-jhipster/generators/server/support';

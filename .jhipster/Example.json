@@ -1,0 +1,20 @@
+{
+  "annotations": {
+    "changelogDate": "20240212164537"
+  },
+  "applications": "*",
+  "entityTableName": "example",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "slug",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Example",
+  "relationships": [],
+  "service": "serviceClass"
+}

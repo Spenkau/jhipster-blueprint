@@ -17,4 +17,3 @@
  * limitations under the License.
  */
 export { default } from './generator.mjs';
-// export { serverFiles as files } from './files.mjs';

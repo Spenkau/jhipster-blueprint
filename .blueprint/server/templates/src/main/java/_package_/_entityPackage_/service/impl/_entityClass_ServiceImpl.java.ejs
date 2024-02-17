@@ -114,7 +114,6 @@ public class <%= serviceClassName %><% if (serviceImpl) { %> implements <%= enti
 <%- include('/_global_partials_entity_/save_template', {viaService: false, returnDirectly: true, isUsingMapsId: isUsingMapsId, mapsIdAssoc: mapsIdAssoc, isController: false, isPersisted: false}); -%>
     }
 
-// COPY METHOD START
 
 <%_ if (!serviceImpl) { _%>
     /**
@@ -127,16 +126,18 @@ public class <%= serviceClassName %><% if (serviceImpl) { %> implements <%= enti
 <%_ if (serviceImpl) { _%>
     @Override
 <%_ } _%>
-    public <% if (reactive) { %>Mono<<% } %><%= instanceType %><% if (reactive) { %>><% } %> copy(<%= instanceType %> <%= instanceName %>) {
+    public <% if (reactive) { %>Mono<<% } %>String<% if (reactive) { %>><% } %> copy(<%= instanceType %> <%= instanceName %>) {
         log.debug("Request to copy <%= entityClass %> : {}", <%= instanceName %>);
 
-        String <%= instanceName %> = 'example';
-<!--         <%= instanceType %>.getClassName(); -->
+        Long id = <%= instanceName %>.getId();
 
-        return <%= instanceName %>;
+        Optional<<%= instanceType %>> result = <%= instanceName %>Repository.findById(id);
+
+        return result.map(<%= instanceType %>::getName).orElse(null);
+
+        // OR:
+//        return <%= instanceName %>.getName();
     }
-
-// COPY METHOD END
 
 
 <%_ if (!serviceImpl) { _%>

@@ -404,6 +404,12 @@ public class <%= entityClass %>Resource {
     }
 <%_ if (!readOnly) { _%>
 
+    @PostMapping("/copy")
+    public String copy(@RequestBody <%= instanceType %> <%= instanceName %>) {
+        log.debug("REST request to get name of copy of <%= instanceName %>");
+        return <%= instanceName %>Service.copy(<%= instanceName %>);
+    }
+
     /**
      * {@code DELETE  /<%= entityApiUrl %>/:id} : delete the "id" <%= entityInstance %>.
      *
@@ -446,4 +452,6 @@ public class <%= entityClass %>Resource {
      */
     @GetMapping("/_search")<%- include('../../_partials_entity_/search_template', {viaService}); -%>
 <%_ } _%>
+
+
 }

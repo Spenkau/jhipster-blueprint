@@ -2,4 +2,9 @@ entity Task {
     name String
 }
 
+entity Example {
+    name String
+    slug String
+}
+
 service * with serviceClass

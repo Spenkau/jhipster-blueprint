@@ -150,6 +150,12 @@ public class TaskResource {
         return ResponseUtil.wrapOrNotFound(task);
     }
 
+    @PostMapping("/copy")
+    public String copy(@RequestBody Task task) {
+        log.debug("REST request to get name of copy of task");
+        return taskService.copy(task);
+    }
+
     /**
      * {@code DELETE  /tasks/:id} : delete the "id" task.
      *

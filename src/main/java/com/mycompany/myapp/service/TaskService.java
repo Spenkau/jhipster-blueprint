@@ -36,6 +36,24 @@ public class TaskService {
     }
 
     /**
+     * Copy a task.
+     *
+     * @param task the entity to copy.
+     * @return the name of entity.
+     */
+    public String copy(Task task) {
+        log.debug("Request to copy Task : {}", task);
+
+        Long id = task.getId();
+
+        Optional<Task> result = taskRepository.findById(id);
+
+        return result.map(Task::getName).orElse(null);
+        // OR:
+        //        return task.getName();
+    }
+
+    /**
      * Update a task.
      *
      * @param task the entity to save.

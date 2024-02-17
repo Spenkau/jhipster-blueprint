@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (example) {
+      <div>
+        <h2 data-cy="exampleDetailsHeading">
+          <span jhiTranslate="testBluepApp.example.detail.title">__jhiTransformTranslate__('testBluepApp.example.detail.title')</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">__jhiTransformTranslate__('global.field.id')</span></dt>
+          <dd>
+            <span>{{ example.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="testBluepApp.example.name">__jhiTransformTranslate__('testBluepApp.example.name')</span></dt>
+          <dd>
+            <span>{{ example.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="testBluepApp.example.slug">__jhiTransformTranslate__('testBluepApp.example.slug')</span></dt>
+          <dd>
+            <span>{{ example.slug }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"
+            >__jhiTransformTranslate__('entity.action.back')</span
+          >
+        </button>
+
+        <button type="button" [routerLink]="['/example', example.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"
+            >__jhiTransformTranslate__('entity.action.edit')</span
+          >
+        </button>
+      </div>
+    }
+  </div>
+</div>
